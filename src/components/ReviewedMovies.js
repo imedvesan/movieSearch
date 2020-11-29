@@ -26,6 +26,7 @@ class ReviewedMovies extends Component {
                       <td>{i+1}</td>
                       <td>{movie.title}</td>
                       <td>{movie.thumbsUp}</td>
+                      <td>{movie.thumbsDown}</td>
                     </tr>
                   )
                 })}

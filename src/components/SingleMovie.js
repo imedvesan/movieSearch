@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchMovie } from '../store/singleMovie'
 import { Card, Button } from 'react-bootstrap';
-import { reviewedMovie, alreadyReviewedMovie } from '../store/reviewedMovies';
+import { reviewedMovie, alreadyReviewedMovieThumsUp, alreadyReviewedMovieThumbsDown } from '../store/reviewedMovies';
 
 
 class SingleMovie extends Component {
@@ -24,7 +24,7 @@ class SingleMovie extends Component {
       console.log('ALREADYREVIEWED', alreadyReviewed)
       if(alreadyReviewed.length === 1) {
         this.props.movieInReact.thumbsUp += 1
-        this.props.alreadyReviewedMovieInReact(alreadyReviewed[0])
+        this.props.alreadyReviewedMovieThumbsUpInReact(alreadyReviewed[0])
         // this.props.reviewedMovieInReact(this.props.movieInReact)
       }
       else {
@@ -38,22 +38,28 @@ class SingleMovie extends Component {
   }
 
   thumbsDown() {
-    // if(this.props.reviewedMoviesInReact.length > 0) {
-    //   const alreadyReviewed = this.props.reviewedMoviesInReact.filter(movie => movie.id === this.props.movieInReact.id)
-    //   console.log('ALREADYREVIEWED', alreadyReviewed)
-    //   if(alreadyReviewed.length === 1) {
-    //     this.props.movieInReact.thumbsUp += 1
-    //     this.props.alreadyReviewedMovieInReact(alreadyReviewed[0])
-    //     // this.props.reviewedMovieInReact(this.props.movieInReact)
-    //   }
-    //   else {
-    //     this.props.movieInReact.thumbsUp = 1
-    //     this.props.reviewedMovieInReact(this.props.movieInReact)
-    //   }
-    // } else {
-    //   this.props.movieInReact.thumbsUp = 1
-    //   this.props.reviewedMovieInReact(this.props.movieInReact)
-    // }
+    if(this.props.reviewedMoviesInReact.length > 0) {
+      const alreadyReviewed = this.props.reviewedMoviesInReact.filter(movie => movie.id === this.props.movieInReact.id)
+      console.log('ALREADYREVIEWED', alreadyReviewed)
+      if(alreadyReviewed.length === 1) {
+        if(this.props.movieInReact.thumbsDown) {
+          this.props.movieInReact.thumbsDown += 1
+          this.props.alreadyReviewedMovieThumbsDownInReact(alreadyReviewed[0])
+        } else {
+          this.props.movieInReact.thumbsDown = 1
+          this.props.alreadyReviewedMovieThumbsDownInReact(alreadyReviewed[0])
+        }
+
+        // this.props.reviewedMovieInReact(this.props.movieInReact)
+      }
+      else {
+        this.props.movieInReact.thumbsDown = 1
+        this.props.reviewedMovieInReact(this.props.movieInReact)
+      }
+    } else {
+      this.props.movieInReact.thumbsDown = 1
+      this.props.reviewedMovieInReact(this.props.movieInReact)
+    }
   }
 
   async componentDidMount() {
@@ -74,7 +80,7 @@ class SingleMovie extends Component {
           Description: {movie.plot}
           </Card.Text>
           <Button onClick={this.thumbsUp}><i className="far fa-thumbs-up"></i></Button>
-          <Button onClick={this.thumbsDown}/*variant="primary"*/><i className="far fa-thumbs-down"></i></Button>
+          <Button onClick={this.thumbsDown}><i className="far fa-thumbs-down"></i></Button>
         </Card.Body>
       </Card>
     )
@@ -96,8 +102,11 @@ const mapDispatch = dispatch => {
     reviewedMovieInReact(movie) {
       dispatch(reviewedMovie(movie))
     },
-    alreadyReviewedMovieInReact(movie) {
-      dispatch(alreadyReviewedMovie(movie))
+    alreadyReviewedMovieThumbsUpInReact(movie) {
+      dispatch(alreadyReviewedMovieThumsUp(movie))
+    },
+    alreadyReviewedMovieThumbsDownInReact(movie) {
+      dispatch(alreadyReviewedMovieThumbsDown(movie))
     }
   }
 }
