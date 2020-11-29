@@ -2,13 +2,15 @@ import { applyMiddleware, combineReducers, createStore }  from 'redux'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import {createLogger} from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
-import allMovies from './allMovies'
-import singleMovie from './singleMovie'
+// import allMovies from './allMovies'
+// import singleMovie from './singleMovie'
 import reviewedMovieReducer from './reviewedMovies'
+import movieReducer from './singleMovie'
+import moviesReducer from './allMovies'
 
 const reducer = combineReducers({
-  allMovies,
-  singleMovie,
+  allMovies: moviesReducer,
+  singleMovie: movieReducer,
   reviewedMovies: reviewedMovieReducer,
 })
 

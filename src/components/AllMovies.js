@@ -58,7 +58,7 @@ class AllMovies extends Component {
                 <tr key={movie.id}>
                   <td>{i+1}</td>
                   <td>
-                  <Link to={`/${movie.id}`}>{movie.title}</Link>
+                  <Link to={`/movie/${movie.id}`}>{movie.title}</Link>
                   </td>
                   <td>
                     <Image src={movie.image} alt={'movie logo'} style={{width: "50px", height: "50px"}} />

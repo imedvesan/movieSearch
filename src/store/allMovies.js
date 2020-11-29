@@ -13,7 +13,6 @@ export const getMovies = movies => {
 
 // thunk creators
 export const fetchMovies = (movieTitle) => async dispatch => {
-  console.log('APIKEY:', process.env.MOVIE_API_KEY)
   try {
     const options = {
       method: 'GET',

@@ -5,6 +5,7 @@ import AllMovies from './components/AllMovies'
 import SingleMovie from './components/SingleMovie';
 import Header from './components/Header'
 import Footer from './components/Footer';
+import ReviewedMovies from './components/ReviewedMovies';
 
 
 function App() {
@@ -13,7 +14,8 @@ function App() {
       <Header />
       <main>
         <Container>
-          <Route path='/:id' component={SingleMovie} />
+        <Route path='/movie/:id' component={SingleMovie} />
+        <Route exact path='/reviewed' component={ReviewedMovies} />
           <Route exact path='/' component={AllMovies} />
         </Container>
       </main>

@@ -5,7 +5,6 @@ export const GET_MOVIE = 'GET_MOVIE'
 
 // action creators
 export const getMovie = movie => {
-  // console.log('i am in the actionCreator')
   return {
     type: GET_MOVIE,
     movie: movie
@@ -24,7 +23,7 @@ export const fetchMovie = (id) => async dispatch => {
       }
     };
     const movie = await axios.request(options)
-    console.log('MOVIE in thunk', movie.data)
+    // console.log('MOVIE in thunk', movie.data)
     dispatch(getMovie(movie.data))
 
   } catch(err) {
