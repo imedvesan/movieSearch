@@ -21,11 +21,14 @@ class SingleMovie extends Component {
   thumbsUp() {
     if(this.props.reviewedMoviesInReact.length > 0) {
       const alreadyReviewed = this.props.reviewedMoviesInReact.filter(movie => movie.id === this.props.movieInReact.id)
-      console.log('ALREADYREVIEWED', alreadyReviewed)
       if(alreadyReviewed.length === 1) {
-        this.props.movieInReact.thumbsUp += 1
-        this.props.alreadyReviewedMovieThumbsUpInReact(alreadyReviewed[0])
-        // this.props.reviewedMovieInReact(this.props.movieInReact)
+        if(this.props.movieInReact.thumbsUp) {
+          this.props.movieInReact.thumbsUp += 1
+          this.props.alreadyReviewedMovieThumbsUpInReact(alreadyReviewed[0])
+        } else {
+          this.props.movieInReact.thumbsUp = 1
+          this.props.alreadyReviewedMovieThumbsUpInReact(alreadyReviewed[0])
+        }
       }
       else {
         this.props.movieInReact.thumbsUp = 1
@@ -49,8 +52,6 @@ class SingleMovie extends Component {
           this.props.movieInReact.thumbsDown = 1
           this.props.alreadyReviewedMovieThumbsDownInReact(alreadyReviewed[0])
         }
-
-        // this.props.reviewedMovieInReact(this.props.movieInReact)
       }
       else {
         this.props.movieInReact.thumbsDown = 1

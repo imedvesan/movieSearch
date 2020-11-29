@@ -38,12 +38,19 @@ export default function reviewedMovieReducer(state = reviewedMovies, action) {
       return [...state, action.movie]
     case ALREADY_REVIEWED_MOVIE_THUMBS_UP:
       let alreadyR = state.filter(movie => movie.id === action.movie.id)
-      alreadyR[0].thumbsUp +=1
-      console.log('ALREADYREVIEWED', alreadyR)
+      if(alreadyR[0].thumbsUp) {
+        alreadyR[0].thumbsUp +=1
+      } else {
+        alreadyR[0].thumbsUp = 1
+      }
       return [...state]
     case ALREADY_REVIEWED_MOVIE_THUMBS_DOWN:
       let alreadyRe = state.filter(movie => movie.id === action.movie.id)
-      alreadyRe[0].thumbsDown +=1
+      if(alreadyRe[0].thumbsDown) {
+        alreadyRe[0].thumbsDown +=1
+      } else {
+        alreadyRe[0].thumbsDown = 1
+      }
       return [...state]
     default:
       return state
