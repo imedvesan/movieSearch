@@ -10,9 +10,14 @@ const Header = () => {
         <Image src={Pic} style={{width: "50px", height: "50px"}}/>
         <h1> Intrested in a movie?</h1>
     </div>
-    <div>
-    <Link to={`/reviewed`}>Reviewed Movies</Link>
-    <Link to={`/`}>Home</Link>
+
+    <div className='headerLinks'>
+      <div>
+        <Link to={`/`}>Home</Link>
+      </div>
+      <div>
+        <Link to={`/reviewed`}>Reviewed Movies</Link>
+      </div>
     </div>
     </header>
   )

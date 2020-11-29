@@ -8,17 +8,19 @@ import { reviewedMovie, alreadyReviewedMovieThumsUp, alreadyReviewedMovieThumbsD
 class SingleMovie extends Component {
   constructor() {
     super();
-    // this.state = {
-    //   reviewedMovie: {
-    //     thumbsUp: 0,
-    //     thumbsDown: 0
-    //   }
-    // }
+    this.state = {
+      isButtonDisabled: false,
+  }
     this.thumbsUp = this.thumbsUp.bind(this)
     this.thumbsDown = this.thumbsDown.bind(this)
   }
 
   thumbsUp() {
+    // event.preventDefault();
+    this.setState({
+        // isButtonUpDisabled: true
+        isButtonDisabled: true
+    });
     if(this.props.reviewedMoviesInReact.length > 0) {
       const alreadyReviewed = this.props.reviewedMoviesInReact.filter(movie => movie.id === this.props.movieInReact.id)
       if(alreadyReviewed.length === 1) {
@@ -38,9 +40,15 @@ class SingleMovie extends Component {
       this.props.movieInReact.thumbsUp = 1
       this.props.reviewedMovieInReact(this.props.movieInReact)
     }
+    // setTimeout(() => this.setState({ isButtonUpDisabled: false }), 7000);
   }
 
   thumbsDown() {
+    // event.preventDefault();
+    this.setState({
+        // isButtonDownDisabled: true
+        isButtonDisabled: true
+    });
     if(this.props.reviewedMoviesInReact.length > 0) {
       const alreadyReviewed = this.props.reviewedMoviesInReact.filter(movie => movie.id === this.props.movieInReact.id)
       console.log('ALREADYREVIEWED', alreadyReviewed)
@@ -61,6 +69,7 @@ class SingleMovie extends Component {
       this.props.movieInReact.thumbsDown = 1
       this.props.reviewedMovieInReact(this.props.movieInReact)
     }
+    // setTimeout(() => this.setState({ isButtonDownDisabled: false }), 7000);
   }
 
   async componentDidMount() {
@@ -80,8 +89,8 @@ class SingleMovie extends Component {
           <Card.Text>
           Description: {movie.plot}
           </Card.Text>
-          <Button onClick={this.thumbsUp}><i className="far fa-thumbs-up"></i></Button>
-          <Button onClick={this.thumbsDown}><i className="far fa-thumbs-down"></i></Button>
+          <Button disabled={this.state.isButtonDisabled} onClick={this.thumbsUp}><i className="far fa-thumbs-up"></i></Button>
+          <Button disabled={this.state.isButtonDisabled} onClick={this.thumbsDown}><i className="far fa-thumbs-down"></i></Button>
         </Card.Body>
       </Card>
     )

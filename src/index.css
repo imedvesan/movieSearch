@@ -13,3 +13,9 @@ main {
 .flex {
   display: flex;
 }
+
+.headerLinks {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
