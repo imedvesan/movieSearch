@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# README movie-search
 
 This project was bootstrapped with [Create React App]
 
