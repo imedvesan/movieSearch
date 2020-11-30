@@ -16,9 +16,7 @@ class SingleMovie extends Component {
   }
 
   thumbsUp() {
-    // event.preventDefault();
     this.setState({
-        // isButtonUpDisabled: true
         isButtonDisabled: true
     });
     if(this.props.reviewedMoviesInReact.length > 0) {
@@ -40,18 +38,14 @@ class SingleMovie extends Component {
       this.props.movieInReact.thumbsUp = 1
       this.props.reviewedMovieInReact(this.props.movieInReact)
     }
-    // setTimeout(() => this.setState({ isButtonUpDisabled: false }), 7000);
   }
 
   thumbsDown() {
-    // event.preventDefault();
     this.setState({
-        // isButtonDownDisabled: true
         isButtonDisabled: true
     });
     if(this.props.reviewedMoviesInReact.length > 0) {
       const alreadyReviewed = this.props.reviewedMoviesInReact.filter(movie => movie.id === this.props.movieInReact.id)
-      console.log('ALREADYREVIEWED', alreadyReviewed)
       if(alreadyReviewed.length === 1) {
         if(this.props.movieInReact.thumbsDown) {
           this.props.movieInReact.thumbsDown += 1
@@ -69,13 +63,10 @@ class SingleMovie extends Component {
       this.props.movieInReact.thumbsDown = 1
       this.props.reviewedMovieInReact(this.props.movieInReact)
     }
-    // setTimeout(() => this.setState({ isButtonDownDisabled: false }), 7000);
   }
 
   async componentDidMount() {
-    // if (this.props.movie !== this.props.match.params.id) {
     this.props.getMovieFromStore(this.props.match.params.id)
-    // }
 }
 
   render() {

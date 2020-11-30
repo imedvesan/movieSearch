@@ -6,7 +6,6 @@ export const ALREADY_REVIEWED_MOVIE_THUMBS_DOWN = 'ALREADY_REVIEWED_MOVIE_THUMBS
 
 // action creators
 export const reviewedMovie = movie => {
-  console.log('i am MOVIE in action creator', movie)
   return {
     type: REVIEWED_MOVIE,
     movie: movie
@@ -34,7 +33,6 @@ const reviewedMovies = []
 export default function reviewedMovieReducer(state = reviewedMovies, action) {
   switch(action.type) {
     case REVIEWED_MOVIE:
-      console.log('action.movie', action.movie)
       return [...state, action.movie]
     case ALREADY_REVIEWED_MOVIE_THUMBS_UP:
       let alreadyR = state.filter(movie => movie.id === action.movie.id)

@@ -5,9 +5,9 @@ import { Table } from 'react-bootstrap';
 class ReviewedMovies extends Component {
   render() {
     const reviewedMovies = this.props.reviewedMoviesInReact
-    console.log("reviewed Movies from the store ???",reviewedMovies)
     return (
       <div>
+        <h1>Movie Reviews</h1>
         {reviewedMovies && reviewedMovies.length > 0 &&
         <Table striped bordered hover>
           <thead>

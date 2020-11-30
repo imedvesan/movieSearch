@@ -36,7 +36,6 @@ class AllMovies extends Component {
 
         <div className='text-center'>
           <Form onSubmit={this.getMovies}>
-            {/* <label htmlFor='title'>Search Movie By Title:</label> */}
             <Form.Control size="lg" type='text' name='title' placeholder='Movie Title' onChange={this.handleChange} value={this.state.title}></Form.Control>
             <Button type="submit" >Submit</Button>
           </Form>
